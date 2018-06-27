@@ -37,7 +37,7 @@ foreach ($events as $event) {
     continue;
   }
   // オウム返し
-  $bot->replyText($event->getReplyToken(), $event->getText() . "test");
+  $bot->replyText($event->getReplyToken(), $event->getText());
 }
 
 // テキストを返信。引数はLINEBot、返信先、テキスト
