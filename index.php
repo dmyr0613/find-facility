@@ -36,7 +36,6 @@ foreach ($events as $event) {
     error_log('Non text message has come');
     continue;
   }
-  
   // オウム返し
   $bot->replyText($event->getReplyToken(), $event->getText());
 }
