@@ -44,7 +44,7 @@ foreach ($events as $event) {
 
   // 文字列を連想配列に変換
   $obj = json_decode($jsonString, true);
-  foreach ($obj as $key['facilitiesList'] => $val){
+  foreach ($obj['facilitiesList'] as $key => $val){
     error_log($key);
     error_log($val["address"]);
     error_log($val["distance"]);
