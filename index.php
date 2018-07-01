@@ -42,6 +42,7 @@ foreach ($events as $event) {
   //APIをコール
   $jsonString = file_get_contents('https://icollabo.jp/imatchopt/json/JsonGetFacilitiesList.json?loc=' . $event->getLatitude() . '_' . $event->getLongitude() . '&svckb=04&distance=500&vl=q9cKef6r8vda');
 
+  $messageStr = "";
   // 文字列を連想配列に変換
   $obj = json_decode($jsonString, true);
   foreach ($obj['facilitiesList'] as $key => $val){
@@ -51,9 +52,16 @@ foreach ($events as $event) {
     error_log($val["facilitiesName"]);
     error_log($val["telNo"]);
 
+    $messageStr = $messageStr . "\r\n" . '現在地からの距離：' . $val["distance"] . 'm';
+    $messageStr = $messageStr . "\r\n" . '薬局名：' . $val["facilitiesName"];
+
+
+
+  }
+  if ($messageStr <> ""){
     //施設情報を返す
-    $bot->replyText($event->getReplyToken(), $key["facilitiesList"]["telNo"]);
-    //replyImageMessage($bot, $event->getReplyToken(), $val["imagelink"], $val["imagelink"]);
+    $messageStr = 'お近くの薬局情報' . "\r\n" . $messageStr;
+    $bot->replyText($event->getReplyToken(), $messageStr);
   }
 
 }
