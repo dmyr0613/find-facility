@@ -31,28 +31,13 @@ foreach ($events as $event) {
     error_log('Non message event has come');
     continue;
   }
-  // LocationMessageクラスのインスタンスでなければ処理をスキップ
-  if (!($event instanceof \LINE\LINEBot\Event\MessageEvent\LocationMessage)) {
-    $bot->replyText($event->getReplyToken(), "位置情報を送信してください。");
+  // TextMessageクラスのインスタンスでなければ処理をスキップ
+  if (!($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage)) {
+    error_log('Non text message has come');
     continue;
   }
   // オウム返し
-  //$bot->replyText($event->getReplyToken(), $event->getText());
-
-  //APIをコール
-  $jsonString = file_get_contents('https://icollabo.jp/imatchopt/json/JsonGetFacilitiesList.json?loc=' . $event->getLatitude() . '_' . $event->getLongitude() . '&svckb=04&distance=500&vl=q9cKef6r8vda');
-
-  // 文字列を連想配列に変換
-  $obj = json_decode($jsonString, true);
-  foreach ($obj as $key => $val){
-    error_log($key);
-    error_log($val);
-    error_log($val["facilitiesName"]);
-    //ハザードマップを戻す
-    $bot->replyText($event->getReplyToken(), $val["facilitiesName"]);
-    //replyImageMessage($bot, $event->getReplyToken(), $val["imagelink"], $val["imagelink"]);
-  }
-
+  $bot->replyText($event->getReplyToken(), $event->getText());
 }
 
 // テキストを返信。引数はLINEBot、返信先、テキスト
