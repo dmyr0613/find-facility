@@ -44,12 +44,12 @@ foreach ($events as $event) {
 
   // 文字列を連想配列に変換
   $obj = json_decode($jsonString, true);
-  foreach ($obj as $key => $val){
+  foreach ($obj as $key['facilitiesList'] => $val){
     error_log($key);
-    error_log($val["facilitiesList"]["address"]);
-    error_log($val["facilitiesList"]["distance"]);
-    error_log($val["facilitiesList"]["facilitiesName"]);
-    error_log($val["facilitiesList"]["telNo"]);
+    error_log($val["address"]);
+    error_log($val["distance"]);
+    error_log($val["facilitiesName"]);
+    error_log($val["telNo"]);
 
     //施設情報を返す
     $bot->replyText($event->getReplyToken(), $key["facilitiesList"]["telNo"]);
