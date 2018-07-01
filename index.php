@@ -47,18 +47,10 @@ foreach ($events as $event) {
   $obj = json_decode($jsonString, true);
   foreach ($obj['facilitiesList'] as $key => $val){
     error_log($key);
-    error_log($val["address"]);
-    error_log($val["distance"]);
-    error_log($val["facilitiesName"]);
-    error_log($val["telNo"]);
-
     $messageStr = $messageStr . "\r\n" . '現在地からの距離：' . $val["distance"] . 'm';
-    $messageStr = $messageStr . "\r\n" . '薬 局 名：' . $val["facilitiesName"];
-    //$messageStr = $messageStr . "\r\n" . '郵便番号：' . $val["zipNo"];
-    //$messageStr = $messageStr . "\r\n" . '住　　所：' . $val["address"];
-    $messageStr = $messageStr . "\r\n" . '住　　所：' . $val["zipNo"] . " " . $val["address"];
-    $messageStr = $messageStr . "\r\n" . '電話番号：' . $val["telNo"];
-    //$messageStr = $messageStr . "\r\n" . 'F　A  X：' . $val["faxNo"];
+    $messageStr = $messageStr . "\r\n" . $val["facilitiesName"];
+    $messageStr = $messageStr . "\r\n" . $val["zipNo"] . " " . $val["address"];
+    $messageStr = $messageStr . "\r\n" . $val["telNo"];
     $messageStr = $messageStr . "\r\n";
 
   }
