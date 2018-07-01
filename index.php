@@ -58,7 +58,7 @@ foreach ($events as $event) {
     $messageStr = $messageStr . "\r\n" . '住　　所：' . $val["address"];
     $messageStr = $messageStr . "\r\n" . '電話番号：' . $val["telNo"];
     $messageStr = $messageStr . "\r\n" . 'F　A  X：' . $val["faxNo"];
-    $messageStr = $messageStr . "\r\n"
+    $messageStr = $messageStr . "\r\n";
 
   }
   if ($messageStr <> ""){
