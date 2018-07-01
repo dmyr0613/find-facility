@@ -46,10 +46,9 @@ foreach ($events as $event) {
   $obj = json_decode($jsonString, true);
   foreach ($obj as $key => $val){
     error_log($key);
-    error_log($val);
-    error_log($val["facilitiesName"]);
+    error_log($val["facilitiesList"]["facilitiesName"]);
     //ハザードマップを戻す
-    $bot->replyText($event->getReplyToken(), $val["facilitiesName"]);
+    $bot->replyText($event->getReplyToken(), $val["facilitiesList"]["facilitiesName"]);
     //replyImageMessage($bot, $event->getReplyToken(), $val["imagelink"], $val["imagelink"]);
   }
 
