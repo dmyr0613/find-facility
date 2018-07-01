@@ -46,10 +46,13 @@ foreach ($events as $event) {
   $obj = json_decode($jsonString, true);
   foreach ($obj as $key => $val){
     error_log($key);
-    error_log($key["facilitiesName"]);
+    error_log($val["address"]);
+    error_log($val["distance"]);
+    error_log($val["facilitiesName"]);
+    error_log($val["telNo"]);
 
     //施設情報を返す
-    $bot->replyText($event->getReplyToken(), $key["facilitiesName"]);
+    $bot->replyText($event->getReplyToken(), $key["facilitiesName"]["telNo"]);
     //replyImageMessage($bot, $event->getReplyToken(), $val["imagelink"], $val["imagelink"]);
   }
 
