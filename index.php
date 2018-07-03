@@ -57,8 +57,10 @@ foreach ($events as $event) {
   if ($messageStr <> ""){
     //施設情報を返す
     $messageStr = 'お近くの薬局情報' . "\r\n" . $messageStr;
-    $bot->replyText($event->getReplyToken(), $messageStr);
+  }else {
+    $messageStr = 'お近くの薬局は見つかりませんでした。'
   }
+  $bot->replyText($event->getReplyToken(), $messageStr);
 
 }
 
