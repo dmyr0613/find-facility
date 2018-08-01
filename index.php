@@ -39,6 +39,14 @@ foreach ($events as $event) {
   // オウム返し
   //$bot->replyText($event->getReplyToken(), $event->getText());
 
+  //サービス終了の通知を返信
+  $messageStr = 'サービスを終了しました。 ';
+  $messageStr = $messageStr . "\r\n";
+  $messageStr = $messageStr . "\r\n" . 'サービスに関するお問合せは、下記アドレスまでお願い致します。';
+  $messageStr = $messageStr . "\r\n" . 'iryo@sbs-infosys.co.jp';
+  $bot->replyText($event->getReplyToken(), $messageStr);
+
+  /*
   //APIをコール
   $jsonString = file_get_contents('https://icollabo.jp/imatchopt/json/JsonGetFacilitiesList.json?loc=' . $event->getLatitude() . '_' . $event->getLongitude() . '&svckb=04&distance=500&vl=q9cKef6r8vda');
 
@@ -61,7 +69,8 @@ foreach ($events as $event) {
     $messageStr = 'お近くの薬局は見つかりませんでした。';
   }
   $bot->replyText($event->getReplyToken(), $messageStr);
-
+  */
+  
 }
 
 // テキストを返信。引数はLINEBot、返信先、テキスト
